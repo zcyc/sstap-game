@@ -603,7 +603,7 @@ namespace SSTap.View
             this.LogoPanel.MouseUp += new MouseEventHandler(this.LoginForm_MouseUp);
             this.panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             //这里是登录界面的大图
-            this.panel1.BackgroundImage = (Image)Resources.tank;
+            this.panel1.BackgroundImage = (Image)Resources.login_logo;
             this.panel1.BackgroundImageLayout = ImageLayout.Zoom;
             this.panel1.Location = new Point(73, 3);
             this.panel1.Name = "panel1";

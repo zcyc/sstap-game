@@ -92,14 +92,6 @@ namespace SSTap.Properties
             }
         }
 
-        internal static Bitmap tank
-        {
-            get
-            {
-                return (Bitmap)SSTap.Properties.Resources.ResourceManager.GetObject(nameof(tank), SSTap.Properties.Resources.resourceCulture);
-            }
-        }
-
         internal static Bitmap panel1
         {
             get
