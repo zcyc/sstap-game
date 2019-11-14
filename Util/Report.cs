@@ -1,12 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SSTap.Util.Report
+// Assembly: SS-TAP_对接91, Version=30.5.26.2, Culture=neutral, PublicKeyToken=null
+// MVID: 3FC77BE2-506D-4E87-81A5-F87143593C29
+// Assembly location: C:\Program Files (x86)\Kaguya\SS-TAP_对接91.exe
+
 using RestSharp;
+using System;
 
 namespace SSTap.Util
 {
-    // Token: 0x0200001C RID: 28
-    internal class Report
-    {
-        // Token: 0x060000A5 RID: 165 RVA: 0x000089B0 File Offset: 0x00006BB0
+  internal class Report
+  {
+    private static string base_url = "https://client.kaguya-hime.me";
+
         public static void ReportClientUpdate()
         {
             string text = "/api/log/update_log";
@@ -18,8 +24,5 @@ namespace SSTap.Util
             restRequest.AddParameter("client_hash", Config.siteHash);
             IRestResponse restResponse = restClient.Execute(restRequest);
         }
-
-        // Token: 0x04000090 RID: 144
-        private static string base_url = "https://client.kaguya-hime.me";
     }
 }

@@ -1,17 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
+﻿// Decompiled with JetBrains decompiler
+// Type: SSTap.Model.UserInfo
+// Assembly: SS-TAP_对接91, Version=30.5.26.2, Culture=neutral, PublicKeyToken=null
+// MVID: 3FC77BE2-506D-4E87-81A5-F87143593C29
+// Assembly location: C:\Program Files (x86)\Kaguya\SS-TAP_对接91.exe
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 
 namespace SSTap.Model
 {
-    // Token: 0x02000023 RID: 35
     internal class UserInfo
     {
-        // Token: 0x060000B2 RID: 178 RVA: 0x00008AD8 File Offset: 0x00006CD8
+        public string BaseUrl = Config.BaseUrl;
+        public string Username;
+        public string Name;
+        public string Password;
+        public int Class;
+        public string Token;
+        public int Id;
+        public float Money;
+        public string NodePassword;
+        public int Port;
+        public List<SsManagerNode> Nodes;
+        public RestClient client;
+        public Notice notice;
+        public long flow;
+        public long transfer_enable;
+        public long used;
+        public long Expires;
+        public string SubLink;
+        public string msg;
+
         public UserInfo()
         {
             this.Username = "";
@@ -30,7 +55,6 @@ namespace SSTap.Model
             this.notice = new Notice();
         }
 
-        // Token: 0x060000B3 RID: 179 RVA: 0x00008B98 File Offset: 0x00006D98
         public bool Login(string username, string password)
         {
             string text = "/auth/logins";
@@ -86,7 +110,6 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000B4 RID: 180 RVA: 0x00008D1C File Offset: 0x00006F1C
         public bool GetAccount()
         {
             string text = "/api/user/" + this.Id;
@@ -131,7 +154,6 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000B5 RID: 181 RVA: 0x00008EE0 File Offset: 0x000070E0
         public bool GetSubLink()
         {
             string text = "/api/sublink";
@@ -168,7 +190,6 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000B6 RID: 182 RVA: 0x00008FC0 File Offset: 0x000071C0
         public bool GetNodes()
         {
             string text = "/api/node";
@@ -226,7 +247,6 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000B7 RID: 183 RVA: 0x00009248 File Offset: 0x00007448
         public long GetNodeFlow(int userid, int nodeid)
         {
             string text = string.Concat(new object[]
@@ -261,7 +281,6 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000B8 RID: 184 RVA: 0x00009308 File Offset: 0x00007508
         public QrCodeOrder GetPayQrCode(string order_type)
         {
             string text = "/api/user/order/qrcode";
@@ -295,7 +314,6 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000B9 RID: 185 RVA: 0x000093F0 File Offset: 0x000075F0
         public AlipayPrice GetAlipayPrice()
         {
             string text = "/api/user/order/price";
@@ -368,33 +386,21 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000BA RID: 186 RVA: 0x000095B4 File Offset: 0x000077B4
         public string UpdateNodeFlow()
         {
-            long num = this.used;
-            long num2 = this.transfer_enable;
-            float num3 = (float)num / (float)num2 * 100f;
-            return string.Concat(new string[]
-            {
-                this.ConvertBytes(num),
-                "/",
-                this.ConvertBytes(num2),
-                "\n (",
-                string.Format("{0:F}", num3),
-                "%)"
-            });
+            long used = this.used;
+            long transferEnable = this.transfer_enable;
+            float num = (float)((double)used / (double)transferEnable * 100.0);
+            return this.ConvertBytes(used) + "/" + this.ConvertBytes(transferEnable) + "\n (" + string.Format("{0:F}", (object)num) + "%)";
         }
 
-        // Token: 0x060000BB RID: 187 RVA: 0x00009634 File Offset: 0x00007834
         private SsManagerNode GetNodeByNodeId(int node_id)
         {
-            foreach (SsManagerNode ssManagerNode in this.Nodes)
-            {
-            }
-            return null;
+            foreach (SsManagerNode node in this.Nodes)
+                ;
+            return (SsManagerNode)null;
         }
 
-        // Token: 0x060000BC RID: 188 RVA: 0x0000968C File Offset: 0x0000788C
         public bool GetLatestNotice()
         {
             Notice notice = new Notice();
@@ -436,27 +442,22 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000BD RID: 189 RVA: 0x000097BC File Offset: 0x000079BC
         public string ConvertBytes(long len)
         {
-            string[] array = new string[]
+            string[] strArray = new string[5]
             {
-                "Bytes",
-                "KB",
-                "MB",
-                "GB",
-                "TB"
+        "Bytes",
+        "KB",
+        "MB",
+        "GB",
+        "TB"
             };
-            int num = 0;
-            while (len >= 1024L && num + 1 < array.Length)
-            {
-                num++;
-                len /= 1024L;
-            }
-            return string.Format("{0:0.##} {1}", len, array[num]);
+            int index;
+            for (index = 0; len >= 1024L && index + 1 < strArray.Length; len /= 1024L)
+                ++index;
+            return string.Format("{0:0.##} {1}", (object)len, (object)strArray[index]);
         }
 
-        // Token: 0x060000BE RID: 190 RVA: 0x0000983C File Offset: 0x00007A3C
         public bool ChangePassword(string currentpass, string newpass)
         {
             string text = "/user/password";
@@ -489,7 +490,6 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000BF RID: 191 RVA: 0x00009918 File Offset: 0x00007B18
         public bool CheckStatus(string orderId)
         {
             string text = "/api/user/order/status";
@@ -520,69 +520,10 @@ namespace SSTap.Model
             return result;
         }
 
-        // Token: 0x060000C0 RID: 192 RVA: 0x000099DC File Offset: 0x00007BDC
         public static long GetTimeStamp(string DateStr)
         {
-            DateTime d = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1, 0, 0, 0, 0));
-            DateTime d2 = Convert.ToDateTime(DateStr);
-            return (long)Math.Round((d2 - d).TotalMilliseconds, MidpointRounding.AwayFromZero);
+            DateTime localTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1, 0, 0, 0, 0));
+            return (long)Math.Round((Convert.ToDateTime(DateStr) - localTime).TotalMilliseconds, MidpointRounding.AwayFromZero);
         }
-
-        // Token: 0x040000AF RID: 175
-        public string BaseUrl = Config.BaseUrl;
-
-        // Token: 0x040000B0 RID: 176
-        public string Username;
-
-        // Token: 0x040000B1 RID: 177
-        public string Name;
-
-        // Token: 0x040000B2 RID: 178
-        public string Password;
-
-        // Token: 0x040000B3 RID: 179
-        public int Class;
-
-        // Token: 0x040000B4 RID: 180
-        public string Token;
-
-        // Token: 0x040000B5 RID: 181
-        public int Id;
-
-        // Token: 0x040000B6 RID: 182
-        public float Money;
-
-        // Token: 0x040000B7 RID: 183
-        public string NodePassword;
-
-        // Token: 0x040000B8 RID: 184
-        public int Port;
-
-        // Token: 0x040000B9 RID: 185
-        public List<SsManagerNode> Nodes;
-
-        // Token: 0x040000BA RID: 186
-        public RestClient client;
-
-        // Token: 0x040000BB RID: 187
-        public Notice notice;
-
-        // Token: 0x040000BC RID: 188
-        public long flow;
-
-        // Token: 0x040000BD RID: 189
-        public long transfer_enable;
-
-        // Token: 0x040000BE RID: 190
-        public long used;
-
-        // Token: 0x040000BF RID: 191
-        public long Expires;
-
-        // Token: 0x040000C0 RID: 192
-        public string SubLink;
-
-        // Token: 0x040000C1 RID: 193
-        public string msg;
     }
 }

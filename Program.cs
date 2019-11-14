@@ -1,4 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SSTap.Program
+// Assembly: SS-TAP_对接91, Version=30.5.26.2, Culture=neutral, PublicKeyToken=null
+// MVID: 3FC77BE2-506D-4E87-81A5-F87143593C29
+// Assembly location: C:\Program Files (x86)\Kaguya\SS-TAP_对接91.exe
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
+using SSTap.Controller;
+using SSTap.View;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -8,55 +20,53 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RestSharp;
-using SSTap.Controller;
-using SSTap.View;
 
 namespace SSTap
 {
-    // Token: 0x02000003 RID: 3
     internal static class Program
     {
-        // Token: 0x06000004 RID: 4 RVA: 0x00002094 File Offset: 0x00000294
+        public static List<string> downloadLink = new List<string>();
+        public static string newPackageName = "";
+        public static string latestVersion = Config.Version;
+        public static LoginController loginController;
+        public static FormMain formMain;
+
         [STAThread]
         private static void Main()
         {
-            bool flag = false;
-            Mutex mutex = new Mutex(true, "kaguya", out flag);
-            bool flag2 = flag;
-            if (!flag2)
+            bool createdNew = false;
+            Mutex mutex = new Mutex(true, "kaguya", out createdNew);
+            if (!createdNew)
             {
-                MessageBox.Show("有另一个实例正在运行！");
+                int num = (int)MessageBox.Show("有另一个实例正在运行！");
                 Environment.Exit(1);
             }
             Program.CheckUpdate();
             Program.FixLsp();
-            AppDomain.CurrentDomain.UnhandledException += Program.CurrentDomain_UnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(Program.CurrentDomain_UnhandledException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Program.loginController = new LoginController();
             Program.loginController.ShowLogin();
             Program.formMain = new FormMain();
-            Application.Run(Program.formMain);
+            Application.Run((Form)Program.formMain);
         }
 
-        // Token: 0x06000005 RID: 5 RVA: 0x00002129 File Offset: 0x00000329
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(
+          object sender,
+          UnhandledExceptionEventArgs e)
         {
-            MessageBox.Show(e.ExceptionObject.ToString());
+            int num = (int)MessageBox.Show(e.ExceptionObject.ToString());
             Application.Exit();
         }
 
-        // Token: 0x06000006 RID: 6 RVA: 0x00002144 File Offset: 0x00000344
         public static void FixLsp()
         {
             try
             {
-                new Process
+                new Process()
                 {
-                    StartInfo = new ProcessStartInfo
+                    StartInfo = new ProcessStartInfo()
                     {
                         FileName = "cmd.exe",
                         Arguments = "/C netsh winsock reset",
@@ -69,34 +79,31 @@ namespace SSTap
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
             }
         }
 
-        // Token: 0x06000007 RID: 7 RVA: 0x000021C0 File Offset: 0x000003C0
         public static void CheckUpdate()
         {
             Program.latestVersion = Program.getLatestVersion();
-            bool flag = Program.latestVersion != Config.Version;
-            if (flag)
+            if (!(Program.latestVersion != Config.Version))
+                return;
+            int num1 = (int)MessageBox.Show("发现新版本，即将自动更新！");
+            try
             {
-                MessageBox.Show("发现新版本，即将自动更新！");
-                try
-                {
-                    FormUpdate formUpdate = new FormUpdate();
-                    formUpdate.ShowDialog();
-                }
-                catch (Win32Exception ex)
-                {
-                    MessageBox.Show("更新出现问题，即将推出");
-                }
-                finally
-                {
-                    Environment.Exit(0);
-                }
+                int num2 = (int)new FormUpdate().ShowDialog();
+            }
+            catch (Win32Exception ex)
+            {
+                int num2 = (int)MessageBox.Show("更新出现问题，即将推出");
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                Environment.Exit(0);
             }
         }
 
-        // Token: 0x06000008 RID: 8 RVA: 0x00002244 File Offset: 0x00000444
         private static string getLatestVersion()
         {
             string result;
@@ -211,46 +218,20 @@ namespace SSTap
             catch (Exception ex)
             {
                 result = Config.Version;
+                Console.WriteLine(ex);
             }
             return result;
         }
 
-        // Token: 0x06000009 RID: 9 RVA: 0x00002524 File Offset: 0x00000724
         public static string GetMd5Hash(string input)
         {
-            bool flag = input == null;
-            string result;
-            if (flag)
-            {
-                result = null;
-            }
-            else
-            {
-                MD5 md = MD5.Create();
-                byte[] array = md.ComputeHash(Encoding.UTF8.GetBytes(input));
-                StringBuilder stringBuilder = new StringBuilder();
-                for (int i = 0; i < array.Length; i++)
-                {
-                    stringBuilder.Append(array[i].ToString("x2"));
-                }
-                result = stringBuilder.ToString();
-            }
-            return result;
+            if (input == null)
+                return (string)null;
+            byte[] hash = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int index = 0; index < hash.Length; ++index)
+                stringBuilder.Append(hash[index].ToString("x2"));
+            return stringBuilder.ToString();
         }
-
-        // Token: 0x04000005 RID: 5
-        public static LoginController loginController;
-
-        // Token: 0x04000006 RID: 6
-        public static FormMain formMain;
-
-        // Token: 0x04000007 RID: 7
-        public static List<string> downloadLink = new List<string>();
-
-        // Token: 0x04000008 RID: 8
-        public static string newPackageName = "";
-
-        // Token: 0x04000009 RID: 9
-        public static string latestVersion = Config.Version;
     }
 }

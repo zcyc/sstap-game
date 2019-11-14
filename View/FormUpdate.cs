@@ -94,6 +94,7 @@ namespace SSTap.View
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
             }
             Report.ReportClientUpdate();
             if (!System.IO.File.Exists(str))
@@ -115,51 +116,51 @@ namespace SSTap.View
 
         private void InitializeComponent()
         {
-            global::System.ComponentModel.ComponentResourceManager componentResourceManager = new global::System.ComponentModel.ComponentResourceManager(typeof(global::SSTap.View.FormUpdate));
-            this.tableLayoutPanel1 = new global::System.Windows.Forms.TableLayoutPanel();
-            this.progressBar1 = new global::System.Windows.Forms.ProgressBar();
-            this.label1 = new global::System.Windows.Forms.Label();
+            ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(FormUpdate));
+            this.tableLayoutPanel1 = new TableLayoutPanel();
+            this.progressBar1 = new ProgressBar();
+            this.label1 = new Label();
             this.tableLayoutPanel1.SuspendLayout();
-            base.SuspendLayout();
+            this.SuspendLayout();
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new global::System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new global::System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.progressBar1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel1.Location = new global::System.Drawing.Point(12, 12);
+            this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add((Control)this.progressBar1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add((Control)this.label1, 1, 0);
+            this.tableLayoutPanel1.Location = new Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new global::System.Windows.Forms.RowStyle(global::System.Windows.Forms.SizeType.Percent, 100f));
-            this.tableLayoutPanel1.Size = new global::System.Drawing.Size(495, 25);
+            this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+            this.tableLayoutPanel1.Size = new Size(495, 25);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.progressBar1.Anchor = global::System.Windows.Forms.AnchorStyles.Left;
-            this.progressBar1.Location = new global::System.Drawing.Point(3, 3);
+            this.progressBar1.Anchor = AnchorStyles.Left;
+            this.progressBar1.Location = new Point(3, 3);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new global::System.Drawing.Size(445, 19);
-            this.progressBar1.Style = global::System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.Size = new Size(445, 19);
+            this.progressBar1.Style = ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 0;
-            this.label1.Anchor = global::System.Windows.Forms.AnchorStyles.Left;
+            this.label1.Anchor = AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new global::System.Drawing.Point(454, 6);
+            this.label1.Location = new Point(454, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new global::System.Drawing.Size(0, 12);
+            this.label1.Size = new Size(0, 12);
             this.label1.TabIndex = 1;
-            base.AutoScaleDimensions = new global::System.Drawing.SizeF(6f, 12f);
-            base.AutoScaleMode = global::System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = global::System.Drawing.Color.White;
-            base.ClientSize = new global::System.Drawing.Size(519, 51);
-            base.Controls.Add(this.tableLayoutPanel1);
-            base.FormBorderStyle = global::System.Windows.Forms.FormBorderStyle.FixedSingle;
-            //base.Icon = (global::System.Drawing.Icon)componentResourceManager.GetObject("$this.Icon");
-            base.MaximizeBox = false;
-            base.MinimizeBox = false;
-            base.Name = "FormUpdate";
-            base.StartPosition = global::System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.AutoScaleDimensions = new SizeF(6f, 12f);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.BackColor = Color.White;
+            this.ClientSize = new Size(519, 51);
+            this.Controls.Add((Control)this.tableLayoutPanel1);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.Icon = (Icon)componentResourceManager.GetObject("$this.Icon");
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = nameof(FormUpdate);
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "自动更新";
-            base.Load += new global::System.EventHandler(this.FormUpdate_Load);
+            this.Load += new EventHandler(this.FormUpdate_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            base.ResumeLayout(false);
+            this.ResumeLayout(false);
         }
 
         public delegate void UpdateGUI(int prog, float percent);

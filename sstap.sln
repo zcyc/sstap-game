@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS-TAP_对接91", "sstap.csproj", "{A36DCCAF-51A0-4241-AA63-78B3F1AEA7FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS-TAP_对接91", "sstap.csproj", "{ABA8DB6F-9E41-4FB3-A2CA-633FBF026A5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A36DCCAF-51A0-4241-AA63-78B3F1AEA7FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A36DCCAF-51A0-4241-AA63-78B3F1AEA7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A36DCCAF-51A0-4241-AA63-78B3F1AEA7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A36DCCAF-51A0-4241-AA63-78B3F1AEA7FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABA8DB6F-9E41-4FB3-A2CA-633FBF026A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA8DB6F-9E41-4FB3-A2CA-633FBF026A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA8DB6F-9E41-4FB3-A2CA-633FBF026A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA8DB6F-9E41-4FB3-A2CA-633FBF026A5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

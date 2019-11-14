@@ -22,7 +22,7 @@ namespace SSTap.View
         private bool flag1 = false;
         private int trafficWidth = 0;
         private int trafficHeight = 0;
-        private bool adStatus = false;
+        //private bool adStatus = false;
         private IContainer components = (IContainer)null;
         public SSTapController sSTapController;
         public Thread ThreadUpdateSSTapUi;
@@ -122,6 +122,7 @@ namespace SSTap.View
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
             }
         }
 
@@ -148,6 +149,7 @@ namespace SSTap.View
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
             }
         }
 
@@ -222,6 +224,7 @@ namespace SSTap.View
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
             }
         }
 
