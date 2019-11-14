@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SSTap.View.LoginForm
-// Assembly: SS-TAP_对接91, Version=30.5.26.2, Culture=neutral, PublicKeyToken=null
-// MVID: 3FC77BE2-506D-4E87-81A5-F87143593C29
-// Assembly location: C:\Program Files (x86)\Kaguya\SS-TAP_对接91.exe
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SSTap.Model;
 using SSTap.Properties;
 using System;
@@ -45,7 +39,7 @@ namespace SSTap.View
         private TableLayoutPanel tableLayoutPanel7;
         private LinkLabel linkLabel1;
         private TableLayoutPanel tableLayoutPanel8;
-        private TextBox WebTextBox;
+        //private TextBox WebTextBox;
         private Panel panel4;
         private TableLayoutPanel tableLayoutPanel9;
         private Label TitleLabel;
@@ -157,14 +151,14 @@ namespace SSTap.View
                 int num = (int)MessageBox.Show("密码不能为空");
                 this.PasswordText.Focus();
             }
-            else if (this.WebTextBox.Text == "")
-            {
-                int num = (int)MessageBox.Show("网站链接不能为空");
-                this.WebTextBox.Focus();
-            }
+            //else if (this.WebTextBox.Text == "")
+            //{
+            //    int num = (int)MessageBox.Show("网站链接不能为空");
+            //    this.WebTextBox.Focus();
+            //}
             else
             {
-                Config.BaseUrl = this.WebTextBox.Text;
+                //Config.BaseUrl = this.WebTextBox.Text;
                 Program.loginController.userInfo = new UserInfo();
                 this.LoginButton.Enabled = false;
                 this.LoginButton.Text = "登录中...";
@@ -209,7 +203,7 @@ namespace SSTap.View
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://91vps.win/2017/12/30/a_sstap/");
+            Process.Start("http://moess.moe");
         }
 
         private void ExitLabel_Click(object sender, EventArgs e)
@@ -314,7 +308,7 @@ namespace SSTap.View
             this.tableLayoutPanel1 = new TableLayoutPanel();
             this.tableLayoutPanel2 = new TableLayoutPanel();
             this.tableLayoutPanel8 = new TableLayoutPanel();
-            this.WebTextBox = new TextBox();
+            //this.WebTextBox = new TextBox();
             this.tableLayoutPanel3 = new TableLayoutPanel();
             this.tableLayoutPanel4 = new TableLayoutPanel();
             this.tableLayoutPanel5 = new TableLayoutPanel();
@@ -417,7 +411,7 @@ namespace SSTap.View
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 13.85542f));
             this.tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 86.14458f));
-            this.tableLayoutPanel8.Controls.Add((Control)this.WebTextBox, 1, 0);
+            //this.tableLayoutPanel8.Controls.Add((Control)this.WebTextBox, 1, 0);
             this.tableLayoutPanel8.Controls.Add((Control)this.panel4, 0, 0);
             this.tableLayoutPanel8.Location = new Point(0, 70);
             this.tableLayoutPanel8.Margin = new Padding(0);
@@ -426,13 +420,13 @@ namespace SSTap.View
             this.tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50f));
             this.tableLayoutPanel8.Size = new Size(347, 35);
             this.tableLayoutPanel8.TabIndex = 2;
-            this.WebTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            this.WebTextBox.Font = new Font("微软雅黑", 12f, FontStyle.Regular, GraphicsUnit.Point, (byte)134);
-            this.WebTextBox.ImeMode = ImeMode.Disable;
-            this.WebTextBox.Location = new Point(51, 3);
-            this.WebTextBox.Name = "WebTextBox";
-            this.WebTextBox.Size = new Size(293, 29);
-            this.WebTextBox.TabIndex = 13;
+            //this.WebTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            //this.WebTextBox.Font = new Font("微软雅黑", 12f, FontStyle.Regular, GraphicsUnit.Point, (byte)134);
+            //this.WebTextBox.ImeMode = ImeMode.Disable;
+            //this.WebTextBox.Location = new Point(51, 3);
+            //this.WebTextBox.Name = "WebTextBox";
+            //this.WebTextBox.Size = new Size(293, 29);
+            //this.WebTextBox.TabIndex = 13;
             this.tableLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this.tableLayoutPanel3.AutoSize = true;
             this.tableLayoutPanel3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -537,7 +531,7 @@ namespace SSTap.View
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new Size(42, 22);
             this.TitleLabel.TabIndex = 0;
-            this.TitleLabel.Text = "登录";
+            this.TitleLabel.Text = "按F键键入坦克";
             this.TitleLabel.MouseDown += new MouseEventHandler(this.LoginForm_MouseDown);
             this.TitleLabel.MouseMove += new MouseEventHandler(this.TitleLabel_MouseMove);
             this.TitleLabel.MouseUp += new MouseEventHandler(this.LoginForm_MouseUp);
@@ -597,6 +591,7 @@ namespace SSTap.View
             this.tableLayoutPanel11.Size = new Size(357, 481);
             this.tableLayoutPanel11.TabIndex = 20;
             this.LogoPanel.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            //这里是登录界面的logo
             this.LogoPanel.BackgroundImage = (Image)Resources.login_logo;
             this.LogoPanel.BackgroundImageLayout = ImageLayout.Zoom;
             this.LogoPanel.Location = new Point(3, 4);
@@ -607,14 +602,15 @@ namespace SSTap.View
             this.LogoPanel.MouseMove += new MouseEventHandler(this.LogoPanel_MouseMove);
             this.LogoPanel.MouseUp += new MouseEventHandler(this.LoginForm_MouseUp);
             this.panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            this.panel1.BackgroundImage = (Image)Resources.login_logo;
+            //这里是登录界面的大图
+            this.panel1.BackgroundImage = (Image)Resources.tank;
             this.panel1.BackgroundImageLayout = ImageLayout.Zoom;
             this.panel1.Location = new Point(73, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new Size(200, 244);
             this.panel1.TabIndex = 0;
             this.panel4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.panel4.BackgroundImage = (Image)Resources.globe_512;
+            //this.panel4.BackgroundImage = (Image)Resources.globe_512;
             this.panel4.BackgroundImageLayout = ImageLayout.Zoom;
             this.panel4.Location = new Point(16, 3);
             this.panel4.Name = "panel4";

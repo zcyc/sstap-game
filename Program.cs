@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SSTap.Program
-// Assembly: SS-TAP_对接91, Version=30.5.26.2, Culture=neutral, PublicKeyToken=null
-// MVID: 3FC77BE2-506D-4E87-81A5-F87143593C29
-// Assembly location: C:\Program Files (x86)\Kaguya\SS-TAP_对接91.exe
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using SSTap.Controller;
@@ -35,7 +29,7 @@ namespace SSTap
         private static void Main()
         {
             bool createdNew = false;
-            Mutex mutex = new Mutex(true, "kaguya", out createdNew);
+            Mutex mutex = new Mutex(true, "MoeSS", out createdNew);
             if (!createdNew)
             {
                 int num = (int)MessageBox.Show("有另一个实例正在运行！");
@@ -111,7 +105,7 @@ namespace SSTap
             {
                 string text = "/api/check_update/" + Config.siteHash;
                 RestClient restClient = new RestClient();
-                restClient.BaseUrl = new Uri("https://client.kaguya-hime.me");
+                restClient.BaseUrl = new Uri("https://client.moess.moe");
                 RestRequest restRequest = new RestRequest(text, (Method)0);
                 restRequest.AddParameter("current_version", Config.Version);
                 IRestResponse restResponse = restClient.Execute(restRequest);

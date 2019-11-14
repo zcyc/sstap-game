@@ -143,5 +143,11 @@
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tank.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tank.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SSTap.View.FormMain
-// Assembly: SS-TAP_对接91, Version=30.5.26.2, Culture=neutral, PublicKeyToken=null
-// MVID: 3FC77BE2-506D-4E87-81A5-F87143593C29
-// Assembly location: C:\Program Files (x86)\Kaguya\SS-TAP_对接91.exe
-
-using PInvoke;
+﻿using PInvoke;
 using SSTap.Controller;
 using SSTap.Properties;
 using System;
@@ -610,7 +604,7 @@ namespace SSTap.View
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new Size(69, 22);
             this.TitleLabel.TabIndex = 0;
-            this.TitleLabel.Text = "Kaguya";
+            this.TitleLabel.Text = "MoeSS";
             this.TitleLabel.MouseDown += new MouseEventHandler(this.FormMain_MouseDown);
             this.TitleLabel.MouseMove += new MouseEventHandler(this.TitleLabel_MouseMove);
             this.TitleLabel.MouseUp += new MouseEventHandler(this.FormMain_MouseUp);
@@ -666,7 +660,7 @@ namespace SSTap.View
             this.ExitLabel.MouseHover += new EventHandler(this.ExitLabel_MouseHover);
             this.MainNotifyIcon.ContextMenuStrip = this.MainContextMenuStrip;
             this.MainNotifyIcon.Icon = (Icon)componentResourceManager.GetObject("MainNotifyIcon.Icon");
-            this.MainNotifyIcon.Text = "Kaguya";
+            this.MainNotifyIcon.Text = "MoeSS";
             this.MainNotifyIcon.DoubleClick += new EventHandler(this.MainNotifyIcon_DoubleClick);
             this.MainContextMenuStrip.Items.AddRange(new ToolStripItem[2]
             {
