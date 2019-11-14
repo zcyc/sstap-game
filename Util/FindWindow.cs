@@ -9,76 +9,76 @@ using System.Runtime.InteropServices;
 
 namespace SSTap.Util
 {
-  internal class FindWindow
-  {
-    private string m_classname;
-    private string m_caption;
-    private DateTime start;
-    private int m_timeout;
-    private IntPtr m_hWnd;
-    public IntPtr p_hWnd;
-    private bool m_IsTimeOut;
-
-    [DllImport("user32")]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool EnumChildWindows(
-      IntPtr window,
-      FindWindow.EnumWindowProc callback,
-      IntPtr i);
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr FindWindowEx(
-      IntPtr hwndParent,
-      IntPtr hwndChildAfter,
-      string lpszClass,
-      string lpszWindow);
-
-    public IntPtr FoundHandle
+    internal class FindWindow
     {
-      get
-      {
-        return this.m_hWnd;
-      }
-    }
+        private string m_classname;
+        private string m_caption;
+        private DateTime start;
+        private int m_timeout;
+        private IntPtr m_hWnd;
+        public IntPtr p_hWnd;
+        private bool m_IsTimeOut;
 
-    public bool IsTimeOut
-    {
-      get
-      {
-        return this.m_IsTimeOut;
-      }
-      set
-      {
-        this.m_IsTimeOut = value;
-      }
-    }
+        [DllImport("user32")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool EnumChildWindows(
+          IntPtr window,
+          FindWindow.EnumWindowProc callback,
+          IntPtr i);
 
-    public FindWindow(IntPtr hwndParent, string classname, string caption, int timeout)
-    {
-      this.m_hWnd = IntPtr.Zero;
-      this.p_hWnd = IntPtr.Zero;
-      this.m_classname = classname;
-      this.m_caption = caption;
-      this.m_timeout = timeout;
-      this.start = DateTime.Now;
-      this.FindChildClassHwnd(hwndParent, IntPtr.Zero);
-    }
+        [DllImport("user32.dll")]
+        private static extern IntPtr FindWindowEx(
+          IntPtr hwndParent,
+          IntPtr hwndChildAfter,
+          string lpszClass,
+          string lpszWindow);
 
-    private bool FindChildClassHwnd(IntPtr hwndParent, IntPtr lParam)
-    {
-      FindWindow.EnumWindowProc callback = new FindWindow.EnumWindowProc(this.FindChildClassHwnd);
-      this.p_hWnd = hwndParent;
-      IntPtr windowEx = FindWindow.FindWindowEx(hwndParent, IntPtr.Zero, this.m_classname, this.m_caption);
-      if (windowEx != IntPtr.Zero)
-      {
-        this.m_hWnd = windowEx;
-        this.m_IsTimeOut = false;
-        return false;
-      }
-      FindWindow.EnumChildWindows(hwndParent, callback, IntPtr.Zero);
-      return true;
-    }
+        public IntPtr FoundHandle
+        {
+            get
+            {
+                return this.m_hWnd;
+            }
+        }
 
-    private delegate bool EnumWindowProc(IntPtr hWnd, IntPtr parameter);
-  }
+        public bool IsTimeOut
+        {
+            get
+            {
+                return this.m_IsTimeOut;
+            }
+            set
+            {
+                this.m_IsTimeOut = value;
+            }
+        }
+
+        public FindWindow(IntPtr hwndParent, string classname, string caption, int timeout)
+        {
+            this.m_hWnd = IntPtr.Zero;
+            this.p_hWnd = IntPtr.Zero;
+            this.m_classname = classname;
+            this.m_caption = caption;
+            this.m_timeout = timeout;
+            this.start = DateTime.Now;
+            this.FindChildClassHwnd(hwndParent, IntPtr.Zero);
+        }
+
+        private bool FindChildClassHwnd(IntPtr hwndParent, IntPtr lParam)
+        {
+            FindWindow.EnumWindowProc callback = new FindWindow.EnumWindowProc(this.FindChildClassHwnd);
+            this.p_hWnd = hwndParent;
+            IntPtr windowEx = FindWindow.FindWindowEx(hwndParent, IntPtr.Zero, this.m_classname, this.m_caption);
+            if (windowEx != IntPtr.Zero)
+            {
+                this.m_hWnd = windowEx;
+                this.m_IsTimeOut = false;
+                return false;
+            }
+            FindWindow.EnumChildWindows(hwndParent, callback, IntPtr.Zero);
+            return true;
+        }
+
+        private delegate bool EnumWindowProc(IntPtr hWnd, IntPtr parameter);
+    }
 }

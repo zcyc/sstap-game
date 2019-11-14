@@ -6,10 +6,10 @@
 
 namespace SSTap.Model
 {
-  internal class LoginConfig
-  {
-    public bool isChecked;
-    public string username;
-    public string password;
-  }
+    internal class LoginConfig
+    {
+        public bool isChecked;
+        public string username;
+        public string password;
+    }
 }

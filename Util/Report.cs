@@ -9,9 +9,9 @@ using System;
 
 namespace SSTap.Util
 {
-  internal class Report
-  {
-    private static string base_url = "https://client.kaguya-hime.me";
+    internal class Report
+    {
+        private static string base_url = "https://client.kaguya-hime.me";
 
         public static void ReportClientUpdate()
         {
